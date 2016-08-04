@@ -52,7 +52,7 @@ waldayu.transducers["approx"] = (function() {
 /* missing "q": "q\u0313", "k": "k\u0313" */ 
 
 waldayu.transducers["phonics"] = (function() {
-    var correspondences = {"\u0294": "'", "\u010d": "ch", "e": "ai", "\u025b": "eh", "\u0259": "e", "i": "ee", "\u0269": "ih", "j\u030c": "j", "k": "q", "q": "k", "\u026c": "tl", "\u019b": "tl", "\u0161": "sh", "u": "oo", "\u03c7": "\u058"};
+    var correspondences = {"\u0294": "'", "\u010d": "ch", "e": "ai", "\u025b": "eh", "\u0259": "e", "i": "ee", "\u0269": "ih", "j\u030c": "j", "k": "q", "q": "k", "\u026c": "tl", "\u019b": "tl", "\u0161": "sh", "u": "oo", "\u03c7": "x"};
     var keys = ["\u0294", "\u010d", "e", "\u025b", "\u0259", "i", "\u0269", "j\u030c", "k", "q", "\u026c", "\u019b", "\u0161", "u", "\u03c7"];
     var regex = new RegExp("(" + keys.join('|') + ")", 'g');
     return function(str) {
