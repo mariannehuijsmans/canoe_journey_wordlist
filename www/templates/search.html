@@ -1,0 +1,50 @@
+<style>
+.col {
+    text-align: center;
+    border-color: beige;
+}
+
+</style>
+<ion-view view-title="Search">
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <a class="button button-icon icon ion-ios-information-outline" ng-click="openModal(word, 'searchInfo')"></a>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  <ion-content ng-controller="AppCtrl">
+      <div>
+      <label class="item item-input" id="inputSearch">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input ng-change="getResult(searchWord)" class="input" id="gitSearch" ng-model="searchWord" style="text-align: center" type="search" placeholder="Type Your Word Here" ng-model-options="{ debounce: 500 }" autocapitalize="off" spellcheck="false" autocomplete="off">
+      </label>
+      <div id="results" ng-if="searchWord.length">
+          <h5 class="errorMsg" ng-show="matches.length === 0 && partMatches.length === 0 && maybeMatches.length === 0">Sorry, we couldn't find any words like that. Please try another word.</h5>
+          <div class="matchContainer" ng-click="openModal(word, 'word')" ng-repeat="word in matches| orderBy: 'distance' |limitTo:4 track by $index">
+          <h4 ng-hide="$index!==0"><u>Matches</u></h4>
+                <span class="response matchLeftDiv" ng-class="{true: 'langMatched', false: '', undefined: ''}[word.type === 'git']">{{word.display_form[0]}}</span>
+                <span class="response matchRightDiv" ng-class="{true: 'langMatched', false: '', undefined: ''}[word.type === 'eng']">{{word.definition[0]}}</span>
+            <span style="display:block ; clear:both"></span>
+          </div>  
+          <div class="matchContainer" ng-click="openModal(word, 'word')" ng-repeat="word in partMatches| orderBy: 'distance' |limitTo:4 track by $index">
+          <h4 class="matchHeaders" ng-hide="$index!==0"><u>Partial Matches</u></h4>
+                <span class="response matchLeftDiv" ng-class="{true: 'langMatched', false: '', undefined: ''}[word.type === 'git']">{{word.display_form[0]}}</span>
+                <span class="response matchRightDiv" ng-class="{true: 'langMatched', false: '', undefined: ''}[word.type === 'eng']">{{word.definition[0]}}</span>
+            <span style="display:block ; clear:both"></span>
+          </div> 
+          <div class="matchContainer" ng-click="openModal(word, 'word')" ng-repeat="word in maybeMatches| orderBy: 'distance' |limitTo:2 track by $index">
+          <h4 class="matchHeaders" ng-hide="$index!==0"><u>Maybe you meant this?</u></h4>
+                <span class="response matchLeftDiv" ng-class="{true: 'langMatched', false: '', undefined: ''}[word.type === 'git']">{{word.display_form[0]}}</span>
+                <span class="response matchRightDiv" ng-class="{true: 'langMatched', false: '', undefined: ''}[word.type === 'eng']">{{word.definition[0]}}</span>
+            <span style="display:block ; clear:both"></span>
+          </div> 
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

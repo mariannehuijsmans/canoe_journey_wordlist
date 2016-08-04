@@ -1,0 +1,42 @@
+<ion-view view-title="Bookmarks" hide-nav-bar>   
+<ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <a class="button button-icon icon ion-ios-information-outline" ng-click="openModal(word, 'info')"></a>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+     <div class="card" ng-repeat="favourite in favs" on-hold="removeFav(favourite, favourite.source_id)">
+  <div class="item item-divider">
+        <a href="" id="audio" class="item item-icon-left" ng-click="playAudio(favourite.audio[0])">
+       <i class="icon ion-ios-volume-high" id="audioIcon"></i>
+    {{ favourite.display_form[0] + " - " + favourite.definition[0] }}
+    </a>
+  </div>
+    <div class="item item-text-wrap" ng-if="favourite.plural[0]">
+    <div class="breakdowns">  
+   Plural form:  {{ favourite.plural[0] }}
+    </div>
+  </div>        
+</div>
+    </ion-content> 
+       
+<!--
+<ion-footer-bar align-title="left" class="bar-stable">
+  <h1 class="title">{{optional}}</h1>
+  <label class="toggle">
+   <input type="checkbox" ng-click="toggle()" ng-checked="custom">
+   <div class="track">
+     <div class="handle"></div>
+   </div>
+</label>
+    <a class="button button-icon icon ion-ios-information-outline" ng-click="closeModal()"></a>
+</ion-footer-bar>
+-->
+</ion-view>

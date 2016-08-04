@@ -1,0 +1,22 @@
+<ion-view view-title="Random Words">
+   <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  <ion-content>
+      <button on-tap="onTapRandom()" id="randomButton" class="button randomButton button-block button-stable">Get 10 Random Words</button>
+      <div ng-if="random" id="randomEntries" style="text-align: center">
+             <div class="matchContainer" ng-click="openModal(word, 'word')" ng-repeat="word in random">
+          <span class="response matchLeftDiv">{{word.display_form[0]}}</span>
+          <span class="response matchRightDiv">{{word.definition[0]}}</span>
+            <span style="display:block ; clear:both"></span>
+          </div> 
+        </div>
+  </ion-content>
+</ion-view>
+

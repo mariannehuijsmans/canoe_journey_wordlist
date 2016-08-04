@@ -1,0 +1,39 @@
+<ion-view view-title="Browse">
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  <ion-content id="browse">
+     <div class="list">
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Select a Letter
+    </div>
+    <select data-ng-init="letterScroll" ng-model="selectedLetter" ng-change="letterSelect()">
+        <option data-ng-repeat="letter in scroll" value="{{$index}}">{{letter}}
+        </option>
+    </select>
+  </label>
+</div>
+        <div data-ng-init="init()" id="browseEntries" class="browseElements">
+            <div class="matchContainer" ng-click="openModal(word, 'word')" ng-repeat="word in browseEntries">
+            <div class="matchLeftContainer">
+                <span class="response matchLeftDiv">{{word.display_form[0]}}</span>
+            </div>
+            <div class="matchRightContainer">
+          <span class="response matchRightDiv">{{word.definition[0]}}</span>
+            <span style="display:block ; clear:both"></span>
+          </div> 
+            </div>
+        </div>
+  </ion-content>
+    <div class="bar bar-footer bar-stable">
+        <a on-tap="prev10()" class="button icon-left browseIcons ion-chevron-left button-clear button-dark"></a>
+        <a on-tap="next10()" class="button icon-right browseIcons ion-chevron-right button-clear button-dark"></a>
+        </div>
+</ion-view>

@@ -1,0 +1,114 @@
+
+
+/*
+style goes here
+.fade.ng-hide {
+  animation:0.5s flipOutX ease;
+}
+*/
+/*
+    .fade.ng-hide-remove {
+  animation:.5s flipOutX ease;
+}
+*/
+/*
+       .fade.ng-hide-add {
+  animation:.5s flipOutX ease;
+}
+  and ends here  
+*/
+
+
+<ion-view view-title="Flashcards">
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <a class="button button-icon icon ion-ios-information-outline" ng-click="openModal(word, 'flashInfo')"></a>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  <ion-content>
+      <div class="list">
+<!--
+<label class="item item-input item-select">
+    <div class="input-label">
+      Select type of learning
+    </div>
+    
+    <select ng-model="flashStyle" ng-change="style(flashStyle)">
+      <option>Active</option>
+      <option selected>Passive</option>
+    </select>
+    
+  </label>
+-->
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Pick a deck!
+    </div>
+    <select ng-model="selectedDeck" ng-change="setDeck(selectedDeck)">
+      <option>Bookmarks</option>
+<!--      <option selected>Animals</option>-->
+<!--      <option>Colours</option>-->
+      <option>Random</option>
+      <!-- <option>Test</option> -->
+    </select>
+  </label>
+
+</div>
+      
+      <div class="list card" ng-show="passive" ng-if="statsBar" on-swipe-left="showNextCard()">
+  <div class="item item-body">
+    <div ng-show="!answerSide" class="item item-divider fade">
+    {{ card.display_form[0] }}
+  </div> 
+        <div ng-show="answerSide" class="item item-divider fade">
+    {{ card.definition[0] }}
+  </div>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    <p class="tab-item">{{ index + 1 + " / " + deck.length}}</p>
+     <a id="fav" class="button button-icon icon tab-item" ng-class="{true: 'ion-ios-bookmarks', false: 'ion-ios-bookmarks-outline', undefined: 'ion-ios-bookmarks-outline'}[card.favourited]" ng-click="toggleFav(card.source_id, 'card', selectedDeck)"></a>
+      <a class="tab-item" ng-show="statsBar" ng-click="seeAnswer()">
+      <i class="icon" ng-class="{true: 'ion-ios-undo', false: 'ion-ios-redo', undefined: 'ion-ios-redo'}[answerSide]"></i>
+    </a>
+  </div>
+</div>
+      
+<div class="list card" ng-show="active" ng-if="statsBar" on-swipe-left="showNextCard()">
+  <div class="item item-body">
+    <div ng-show="answerSide" class="item item-divider fade">
+    {{ card.display_form[0] }}
+  </div> 
+        <div ng-show="!answerSide" class="item item-divider fade">
+    {{ card.definition[0] }}
+  </div>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+      <p class="tab-item">{{ index + 1 + " / " + deck.length}}</p>
+    <a class="tab-item" ng-show="statsBar" ng-click="seeAnswer()">
+      <i class="icon ion-ios-lightbulb-outline"></i>
+      See other side
+    </a>
+     <a id="fav" class="button button-icon icon tab-item" ng-class="{true: 'ion-ios-bookmarks', false: 'ion-ios-bookmarks-outline', undefined: 'ion-ios-bookmarks-outline'}[card[0].favourited]" ng-hide="selectedDeck === 'Bookmarks'" ng-click="toggleFav(card[0].source_id, 'card')"></a>
+  </div>
+</div>      
+        
+    
+  </ion-content>
+   <div ng-show="statsBar" class="bar bar-footer bar-stable">
+        <a on-tap="showPrevCard()" class="button icon-left browseIcons ion-chevron-left button-clear button-dark"></a>
+       
+        <a on-tap="showNextCard()" class="button icon-right browseIcons ion-chevron-right button-clear button-dark"></a>
+        </div>
+</ion-view>
+
+
+

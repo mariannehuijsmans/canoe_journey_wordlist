@@ -1,0 +1,36 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <a class="button button-icon icon ion-ios-arrow-back" ng-click="closeModal('word')"></a>
+      <h1 class="title">Word Info</h1>
+        <a id="fav" class="button button-icon icon" ng-class="{true: 'ion-ios-bookmarks', false: 'ion-ios-bookmarks-outline', undefined: 'ion-ios-bookmarks-outline'}[dispObj.favourited]" ng-click="toggleFav(dispObj.source_id, 'dispObj')"></a>
+    </ion-header-bar>
+    <ion-content>
+     <div class="card">
+  <div class="item item-divider">
+      <a href="" id="audio" class="item item-icon-left" ng-click="playAudio(dispObj.audio[0])">
+       <i class="icon ion-ios-volume-high" id="audioIcon"></i>
+    {{ dispObj.display_form[0] + " - " + dispObj.definition[0] }}
+    </a>
+  </div>
+    <div class="item item-text-wrap" ng-if="dispObj.plural[0]">
+    <div class="breakdowns">  
+    Plural form: {{ dispObj.plural[0] }}
+    </div>
+  </div>
+</div>
+    </ion-content>
+       
+<!--
+<ion-footer-bar align-title="left" class="bar-stable">
+  <h1 class="title">{{optional}}</h1>
+  <label class="toggle">
+   <input type="checkbox" ng-click="toggle()" ng-checked="custom">
+   <div class="track">
+     <div class="handle"></div>
+   </div>
+</label>
+</ion-footer-bar>
+-->
+  </ion-modal-view>
+
+
