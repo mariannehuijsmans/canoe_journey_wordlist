@@ -39,7 +39,7 @@ waldayu.orthographizeEntries = function(dictionary) {
 
 /* Then we add the transducers one by one */
 waldayu.transducers["approx"] = (function() {
-    var correspondences = {"\u0294": "", "\u0313": "", "\u02b7": "", "\u025b": "e", "\u0259": "\u025b", "h": "\u03c7", "i": "\u0269", "\u0269": "i", "j\u030c": "\u010d", "k": "k\u02b7", "q": "q\u02b7", "\u026c": "l", "l": "\u026c", "\u019b": "t\u026c", "t\u01dbf": "\u03b8", "\u03b8": "t\u01dbf", "u": "\u028a", "\u028a": "u", "x": "\u03c7", "\u03c7": "x"};
+    var correspondences = {"\u0294": "", "\u0313": "", "\u02b7": "", "\u025b": "e", "\u0259": "\u025b", "h": "\u03c7", "i": "\u0269", "\u0269": "i", "j\u030c": "\u010d", "k": "k\u02b7", "q": "q\u02b7", "\u026c": "l", "l": "\u026c", "\u019b": "t\u026c", "t\u1db1": "\u03b8", "\u03b8": "t\u1db1", "u": "\u028a", "\u028a": "u", "x": "\u03c7", "\u03c7": "x"};
     var keys = ["\u0294", "\u0313", "\u02b7", "\u025b", "\u0259", "\u025b", "\u0259", "h", "i", "\u0269", "j\u030c", "k", "q", "\u026c", "l", "\u019b", "t\u01dbf", "u", "\u028a", "x", "\u03c7"];
     var regex = new RegExp("(" + keys.join('|') + ")", 'g');
     return function(str) {
@@ -98,7 +98,7 @@ waldayu.transducers["num"] = (function() {
         "t": "132",
         "t\u01dbf": "133",
         "t\u0313": "134",    
-        "t\u0313\u01dbf": "135",
+        "t\u0313\u1db1": "135",
         "\u03b8":"136",
         "u":"137",
         "\u028a":"139",
