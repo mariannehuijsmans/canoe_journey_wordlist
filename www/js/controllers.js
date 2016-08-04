@@ -111,6 +111,24 @@ angular.module('starter.controllers', [])
 //        $('#engButton').prop('checked', true);
 //        $('#gitButton').prop('checked', false);
 //    };
+    
+    $scope.getEnglish = function(searchWord) {
+        var answers1 = []
+        var t0 = performance.now();
+        var re = new RegExp(searchWord, 'i')
+        console.log(re)
+        for(i=0; i<$scope.allEntries.length;i++) {
+            if (answers1.length < 25) {
+                if (re.test($scope.allEntries[i].definition[0])) {
+                    answers1.push($scope.allEntries[i])
+                }
+            }
+        }
+        var t1 = performance.now();
+        console.log("Call to getEnglish took " + (t1 - t0) + " milliseconds.")
+        console.log(answers1)
+        return(answers1)
+    }
 
 
 
@@ -120,7 +138,7 @@ angular.module('starter.controllers', [])
         if ( $(".input").val() === "") {
             $("#results").hide
         } else {
-            var answerEng = searchEng(searchWord);
+            var answerEng = $scope.getEnglish(searchWord);
             var answerGit = searchGit(searchWord);
             console.log(answerEng.length)
             console.log(answerGit.length)
@@ -128,21 +146,21 @@ angular.module('starter.controllers', [])
             var partMatches = [];
             var matches = [];
             for (var i=0; i< answerEng.length;i++){
-                var entry = answerEng[i][1]
-                if(entry.distance === 0) {
+                var entry = answerEng[i]
+//                if(entry.distance === 0) {
                     entry.type = "eng";
                     matches.push(entry);
-                }
-
-                if(entry.distance <= 1 && entry.distance > 0) {
-                    entry.type = "eng";
-                    partMatches.push(entry);
-                }
-
-                if(entry.distance <= 2 && entry.distance > 1) {
-                    entry.type = "eng";
-                    maybeMatches.push(entry);
-                }
+//                }
+//
+//                if(entry.distance <= 1 && entry.distance > 0) {
+//                    entry.type = "eng";
+//                    partMatches.push(entry);
+//                }
+//
+//                if(entry.distance <= 2 && entry.distance > 1) {
+//                    entry.type = "eng";
+//                    maybeMatches.push(entry);
+//                }
             }
             for (var i=0; i< answerGit.length;i++){
                 var entry = answerGit[i][1]
