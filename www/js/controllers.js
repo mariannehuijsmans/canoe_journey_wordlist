@@ -343,6 +343,16 @@ angular.module('starter.controllers', [])
         // Create Media object from src
         console.log(src);
 
+        if (ionic.Platform.platform() == "win32"){
+            srcURL = "audio/" + src
+            if (src != undefined ){
+                var audio = new Audio(srcURL);
+                audio.play();
+            } else {
+                alert("sorry, there is no audio for this file")
+            }
+        }
+        
         if (ionic.Platform.isIOS()){
             src = "audio/" + src
             my_media = new Media(src, onSuccess, onError);
