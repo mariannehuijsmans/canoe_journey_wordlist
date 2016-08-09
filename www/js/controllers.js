@@ -343,7 +343,7 @@ angular.module('starter.controllers', [])
         // Create Media object from src
         console.log(src);
 
-        if (ionic.Platform.platform() == "win32"){
+        if (ionic.Platform.platform() == "win32" || ionic.Platform.platform() == "macintel"){
             srcURL = "audio/" + src
             if (src != undefined ){
                 var audio = new Audio(srcURL);
